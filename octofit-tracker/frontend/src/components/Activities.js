@@ -4,7 +4,8 @@ const Activities = () => {
   const [activities, setActivities] = useState([]);
 
   useEffect(() => {
-    fetch('https://animated-pancake-x5xxvww647w7cw95-8000.app.github.dev/api/activities')
+    const baseUrl = 'https://animated-pancake-x5xxvww647w7cw95-8000.app.github.dev';
+    fetch(`${baseUrl}/api/activities`)
       .then(response => response.json())
       .then(data => setActivities(data));
   }, []);

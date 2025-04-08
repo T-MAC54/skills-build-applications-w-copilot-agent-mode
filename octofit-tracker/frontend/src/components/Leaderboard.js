@@ -4,7 +4,7 @@ const Leaderboard = () => {
   const [leaders, setLeaders] = useState([]);
 
   useEffect(() => {
-    fetch('https://animated-pancake-x5xxvww647w7cw95-8000.app.github.dev/api/leaderboard')
+    fetch('http://animated-pancake-x5xxvww647w7cw95-8000.app.github.dev/api/leaderboard')
       .then(response => response.json())
       .then(data => setLeaders(data));
   }, []);
