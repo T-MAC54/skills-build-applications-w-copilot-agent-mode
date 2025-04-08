@@ -6,7 +6,7 @@ from .models import User, Team, Activity, Leaderboard, Workout
 
 @api_view(['GET'])
 def api_root(request, format=None):
-    base_url = 'http://localhost:8000/'
+    base_url = 'https://animated-pancake-x5xxvww647w7cw95-8000.app.github.dev/'
     return Response({
         'users': base_url + 'api/users/',
         'teams': base_url + 'api/teams/',
