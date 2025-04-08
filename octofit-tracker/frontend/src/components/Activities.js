@@ -1,36 +1,25 @@
 import React, { useEffect, useState } from 'react';
 
-const Activities = () => {
+function Activities() {
   const [activities, setActivities] = useState([]);
 
   useEffect(() => {
-    const baseUrl = 'https://animated-pancake-x5xxvww647w7cw95-8000.app.github.dev';
-    fetch(`${baseUrl}/api/activities`)
+    fetch('https://animated-pancake-x5xxvww647w7cw95-8000.app.github.dev/api/activities/')
       .then(response => response.json())
-      .then(data => setActivities(data));
+      .then(data => setActivities(data))
+      .catch(error => console.error('Error fetching activities:', error));
   }, []);
 
   return (
-    <div className="container mt-4">
-      <h1 className="text-center">Activities</h1>
-      <table className="table table-striped">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-          </tr>
-        </thead>
-        <tbody>
-          {activities.map(activity => (
-            <tr key={activity.id}>
-              <td>{activity.id}</td>
-              <td>{activity.name}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div>
+      <h1>Activities</h1>
+      <ul>
+        {activities.map(activity => (
+          <li key={activity._id}>{activity.activity_type} - {activity.duration}</li>
+        ))}
+      </ul>
     </div>
   );
-};
+}
 
 export default Activities;

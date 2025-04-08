@@ -1,37 +1,36 @@
 import React, { useEffect, useState } from 'react';
 
-const Leaderboard = () => {
-  const [leaders, setLeaders] = useState([]);
+function Leaderboard() {
+  const [leaderboard, setLeaderboard] = useState([]);
 
   useEffect(() => {
-    fetch('http://animated-pancake-x5xxvww647w7cw95-8000.app.github.dev/api/leaderboard')
+    fetch('https://animated-pancake-x5xxvww647w7cw95-8000.app.github.dev/api/leaderboard/')
       .then(response => response.json())
-      .then(data => setLeaders(data));
+      .then(data => setLeaderboard(data))
+      .catch(error => console.error('Error fetching leaderboard:', error));
   }, []);
 
   return (
-    <div className="container mt-4">
-      <h1 className="text-center">Leaderboard</h1>
-      <table className="table table-striped">
+    <div>
+      <h1>Leaderboard</h1>
+      <table>
         <thead>
           <tr>
-            <th>ID</th>
-            <th>Name</th>
+            <th>Username</th>
             <th>Score</th>
           </tr>
         </thead>
         <tbody>
-          {leaders.map(leader => (
-            <tr key={leader.id}>
-              <td>{leader.id}</td>
-              <td>{leader.name}</td>
-              <td>{leader.score}</td>
+          {leaderboard.map(entry => (
+            <tr key={entry._id}>
+              <td>{entry.user.username}</td>
+              <td>{entry.score}</td>
             </tr>
           ))}
         </tbody>
       </table>
     </div>
   );
-};
+}
 
 export default Leaderboard;
